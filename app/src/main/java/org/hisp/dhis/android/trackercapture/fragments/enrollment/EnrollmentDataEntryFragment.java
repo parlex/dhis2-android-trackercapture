@@ -49,6 +49,7 @@ import org.hisp.dhis.android.sdk.persistence.models.ProgramRule;
 import org.hisp.dhis.android.sdk.persistence.models.ProgramTrackedEntityAttribute;
 import org.hisp.dhis.android.sdk.persistence.models.TrackedEntityAttributeValue;
 import org.hisp.dhis.android.sdk.persistence.models.TrackedEntityInstance;
+import org.hisp.dhis.android.sdk.sms.SMSNotification;
 import org.hisp.dhis.android.sdk.ui.activities.OnBackPressedListener;
 import org.hisp.dhis.android.sdk.ui.adapters.SectionAdapter;
 import org.hisp.dhis.android.sdk.ui.adapters.rows.events.OnDetailedInfoButtonClick;
@@ -430,6 +431,12 @@ public class EnrollmentDataEntryFragment extends DataEntryFragment<EnrollmentDat
      * confirms that we want to save changes, which flags the data to be sent to server
      */
     private void confirmSave() {
+        //Sending SMS
+        if(form.getProgram().getName().equalsIgnoreCase("Malaria Enhanced Surveillance")) {
+            SMSNotification.sendSMSNotification(form.getOrganisationUnit(), form.getProgram(), form.getTrackedEntityAttributeValueMap());
+        }
+        //SMS sent
+
         form.getTrackedEntityInstance().setFromServer(false);
         form.getEnrollment().setFromServer(false);
         form.getTrackedEntityInstance().save();
