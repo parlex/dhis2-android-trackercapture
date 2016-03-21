@@ -433,7 +433,9 @@ public class EnrollmentDataEntryFragment extends DataEntryFragment<EnrollmentDat
     private void confirmSave() {
         //Sending SMS
         if(form.getProgram().getName().equalsIgnoreCase("Malaria Enhanced Surveillance")) {
-            SMSNotification.sendSMSNotification(form.getOrganisationUnit(), form.getProgram(), form.getTrackedEntityAttributeValueMap());
+            UiUtils.showErrorDialog(getActivity(), "Sending SMS", "Notifying about new enrollment");
+            String incidentDate = form.getEnrollment().getIncidentDate();
+            SMSNotification.sendSMSNotification(form.getOrganisationUnit(), form.getProgram(), form.getTrackedEntityAttributeValueMap(), incidentDate);
         }
         //SMS sent
 
