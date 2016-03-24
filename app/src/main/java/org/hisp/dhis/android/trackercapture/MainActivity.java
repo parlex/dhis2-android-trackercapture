@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements INavigationHandle
         LoadingController.enableLoading(this, ResourceType.PROGRAMRULEACTIONS);
         LoadingController.enableLoading(this, ResourceType.RELATIONSHIPTYPES);
         LoadingController.enableLoading(this, ResourceType.ORGUNITCONTACT);
+        LoadingController.enableLoading(this, ResourceType.ATTRIBUTE);
         Dhis2Application.bus.register(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
